@@ -1,24 +1,25 @@
+#pragma omp parallel for
+
 #include <iostream>
 #include <vector>
 
-template <class T>
 class Matrix
 {
-	std::vector<vector<T>> m;
-	int size;
+	std::vector<double> v;
+	double *row;
 public:
 	Matrix(int s = 20)
 	{
-		size = s;
+		m1.resize(s*s);
+		row = v.data;
 	}
 	~Matrix()
 	{
 	}
-	Matrix<T> operator*(Matrix<T> &mt)
+	Matrix operator*(Matrix &mt)
 	{
-		if (size != mt.size) throw "error";
-		T scal = 0;
-		Matrix<T> temp(size);
+		double scal = 0;
+		Matrix temp(mt.v.size());
 		for (int i = 0; i < size; i++)
 		{
 			for (int j = 0; j < size; j++)
